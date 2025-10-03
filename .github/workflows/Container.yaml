@@ -22,6 +22,6 @@ jobs:
           token: ${{ secrets.ACCUKNOX_TOKEN }}         # CSPM API token
           label: ${{ secrets.ACCUKNOX_LABEL }}         # Must be a valid string (no spaces/special chars)
           image_name: "nginx"                               # Container image to scan
-          soft_fail: true                               # Continue workflow even if vulnerabilities found
+          soft_fail: false                               # Continue workflow even if vulnerabilities found
 
 
