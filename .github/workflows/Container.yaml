@@ -1,0 +1,24 @@
+name: AccuKnox Container Scan
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  container-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@main
+
+      - name: Run AccuKnox Container Scanner
+        uses: Vickydew1/container-scan-action@main
+        with:
+          soft_fail: true
+          token: ${{ secrets.ACCUKNOX_TOKEN }}
+          endpoint: ${{ secrets.ACCUKNOX_ENDPOINT }}
+          label: ${{ secrets.ACCUKNOX_LABEL }}
+          image: "your-image-name"
+          tag: "latest"
+          severity: "UNKNOWN, LOW, MEDIUM, HIGH, CRITICAL"
