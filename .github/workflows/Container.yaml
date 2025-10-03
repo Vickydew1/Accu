@@ -22,3 +22,4 @@ jobs:
           image: "your-image-name"
           tag: "latest"
           severity: "UNKNOWN, LOW, MEDIUM, HIGH, CRITICAL"
+
