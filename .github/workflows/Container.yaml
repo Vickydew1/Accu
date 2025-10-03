@@ -23,3 +23,5 @@ jobs:
           tag: "latest"
           severity: "UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL"
 
+          
+
