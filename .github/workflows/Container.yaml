@@ -24,4 +24,3 @@ jobs:
           image: "nginx"                               # Container image to scan
           soft_fail: true                               # Continue workflow even if vulnerabilities found
 
-
