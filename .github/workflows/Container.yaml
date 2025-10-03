@@ -1,4 +1,4 @@
-name: AccuKnox Container Scan
+name: AccuKnox Container Scan Workflow
 
 on:
   push:
@@ -11,6 +11,7 @@ on:
 jobs:
   container-scan:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -18,10 +19,10 @@ jobs:
       - name: Run AccuKnox Container Scanner
         uses: Vickydew1/container-scan-action@main
         with:
-          endpoint: ${{ secrets.ACCUKNOX_ENDPOINT }}   # CSPM Console URL
-          token: ${{ secrets.ACCUKNOX_TOKEN }}         # CSPM API token
-          label: ${{ secrets.ACCUKNOX_LABEL }}         # Must be a valid string (no spaces/special chars)
-          image_name: "nginx"                               # Container image to scan
-          soft_fail: true                             # Continue workflow even if vulnerabilities found
-
-
+          token: ${{ secrets.ACCUKNOX_TOKEN }}
+          label: ${{ secrets.ACCUKNOX_LABEL }}
+          endpoint: ${{ secrets.ACCUKNOX_ENDPOINT }}
+          image_name: "nginx"       # <-- pass container image here
+          tag: "latest"             # optional
+          severity: "CRITICAL"      # optional
+          soft_fail: false          # set false to fail workflow if vulnerabilities found
