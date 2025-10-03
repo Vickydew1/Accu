@@ -23,3 +23,4 @@ jobs:
           label: ${{ secrets.ACCUKNOX_LABEL }}         # Must be a valid string (no spaces/special chars)
           image: "nginx"                               # Container image to scan
           soft_fail: true                               # Continue workflow even if vulnerabilities found
+
