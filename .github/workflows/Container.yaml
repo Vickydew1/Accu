@@ -23,6 +23,6 @@ jobs:
           label: ${{ secrets.ACCUKNOX_LABEL }}
           endpoint: ${{ secrets.ACCUKNOX_ENDPOINT }}
           image_name: "nginx"       # <-- pass container image here
-          tag: "Vicky"             # optional
+          tag: "latest"             # optional
           severity: "CRITICAL,LOW,MEDIUM,HIGH,UNKNOWN"      # optional
           soft_fail: false          # set false to fail workflow if vulnerabilities found
