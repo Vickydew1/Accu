@@ -27,6 +27,6 @@ jobs:
           target_url: "http://testhtml5.vulnweb.com/"
 
           # Optional parameters
-          severity_threshold: "HIGH"
-          dast_scan_type: "baseline"
+          severity_threshold: "HIGH, LOW, MEDIUM"
+          dast_scan_type: "fullscan"
           soft_fail: true
