@@ -7,6 +7,7 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   dast-scan:
@@ -15,17 +16,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run AccuKnox DAST Scanner
+      - name: Run AccuKnox DAST Scan
         uses: Vickydew1/dast-scan-action@main
         with:
-          accuknox_token: ${{ secrets.ACCUKNOX_TOKEN }}
-          accuknox_endpoint: ${{ secrets.ACCUKNOX_ENDPOINT }}
+          # Map GitHub secrets to action input names
+          token: ${{ secrets.ACCUKNOX_TOKEN }}
           label: ${{ secrets.ACCUKNOX_LABEL }}
-          
-          # Required
+          endpoint: ${{ secrets.ACCUKNOX_ENDPOINT }}
+
+          # Required scan URL
           target_url: "http://testphp.vulnweb.com"
-          
-          # Optional arguments for testing all features
-          severity_threshold: "LOW, MEDIUM, HIGH"         # LOW, MEDIUM, HIGH
-          scan_type: "full-scan"           # baseline or full-scan
+
+          # Optional parameters
+          severity_threshold: "HIGH"
+          dast_scan_type: "baseline"
           soft_fail: true
