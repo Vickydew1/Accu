@@ -28,5 +28,5 @@ jobs:
 
           # Optional parameters
           severity_threshold: "HIGH"
-          dast_scan_type: "full-scan"
+          dast_scan_type: "baseline"
           soft_fail: true
