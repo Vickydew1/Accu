@@ -24,7 +24,7 @@ jobs:
           endpoint: ${{ secrets.ACCUKNOX_ENDPOINT }}
 
           # Required scan URL
-          target_url: "http://testphp.vulnweb.com"
+          target_url: "http://testhtml5.vulnweb.com/"
 
           # Optional parameters
           severity_threshold: "HIGH"
