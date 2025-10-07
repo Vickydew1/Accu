@@ -23,10 +23,6 @@ jobs:
           sonar_token: ${{ secrets.SONAR_TOKEN }}
           sonar_host_url: ${{ secrets.SONAR_HOST_URL }}
           sonar_organization_id: ${{ secrets.SONAR_ORG_ID }}
-          repository_url: ${{ github.repository }}
-          commit_sha: ${{ github.sha }}
-          commit_ref: ${{ github.ref_name || github.ref }}
-          pipeline_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           ACCUKNOX_ENDPOINT: ${{ secrets.ACCUKNOX_ENDPOINT }}
           ACCUKNOX_TOKEN: ${{ secrets.ACCUKNOX_TOKEN }}
           ACCUKNOX_LABEL: ${{ secrets.ACCUKNOX_LABEL }}
