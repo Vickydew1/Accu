@@ -25,6 +25,6 @@ jobs:
 
           # Required scan URL
           target_url: "http://testhtml5.vulnweb.com/"
-          severity_threshold: "HIGH"
-          # dast_scan_type: "full-scan"
+          severity_threshold: "LOW"
+          dast_scan_type: "full-scan"
           soft_fail: "true"
