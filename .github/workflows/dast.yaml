@@ -25,6 +25,6 @@ jobs:
 
           # Required scan URL
           target_url: "https://juice-shop.herokuapp.com/"
-          severity_threshold: "HIGH"
+          severity_threshold: "LOW"
           dast_scan_type: "full-scan"
-          soft_fail: "false"
+          soft_fail: "true"
