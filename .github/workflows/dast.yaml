@@ -24,7 +24,7 @@ jobs:
           endpoint: ${{ secrets.ACCUKNOX_ENDPOINT }}
 
           # Required scan URL
-          target_url: "http://testhtml5.vulnweb.com/"
-          severity_threshold: "LOW"
+          target_url: "https://juice-shop.herokuapp.com/"
+          severity_threshold: "HIGH"
           dast_scan_type: "full-scan"
-          soft_fail: "true"
+          soft_fail: "false"
