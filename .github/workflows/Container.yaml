@@ -19,9 +19,9 @@ jobs:
       - name: Run AccuKnox Container Scanner
         uses: Vickydew1/container-scan-action@main
         with:
-          token: ${{ secrets.ACCUKNOX_TOKEN }}
-          label: ${{ secrets.ACCUKNOX_LABEL }}
-          endpoint: ${{ secrets.ACCUKNOX_ENDPOINT }}
+          accuknox_token: ${{ secrets.ACCUKNOX_TOKEN }}
+          accuknox_label: ${{ secrets.ACCUKNOX_LABEL }}
+          accuknox_endpoint: ${{ secrets.ACCUKNOX_ENDPOINT }}
           image_name: "nginx"       # <-- pass container image here
           tag: "latest"             # optional
           severity: "CRITICAL,LOW,MEDIUM,HIGH,UNKNOWN"      # optional
