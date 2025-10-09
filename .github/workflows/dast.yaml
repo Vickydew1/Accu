@@ -18,12 +18,12 @@ jobs:
       - name: Run AccuKnox DAST Scan
         uses: Vickydew1/dast-scan-action@main
         with:
-          token: ${{ secrets.ACCUKNOX_TOKEN }}
-          label: ${{ secrets.ACCUKNOX_LABEL }}
-          endpoint: ${{ secrets.ACCUKNOX_ENDPOINT }}
+          accuknox_token: ${{ secrets.ACCUKNOX_TOKEN }}
+          accuknox_label: ${{ secrets.ACCUKNOX_LABEL }}
+          accuknox_endpoint: ${{ secrets.ACCUKNOX_ENDPOINT }}
 
           # Required scan URL
-          target_url: "https://github.com/rapid7/hackazon/"
+          target_url: "https://juice-shop.herokuapp.com/"
           severity_threshold: "HIGH"
           dast_scan_type: "baseline"
           soft_fail: "true"
