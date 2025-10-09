@@ -21,8 +21,6 @@ jobs:
           accuknox_token: ${{ secrets.ACCUKNOX_TOKEN }}
           accuknox_label: ${{ secrets.ACCUKNOX_LABEL }}
           accuknox_endpoint: ${{ secrets.ACCUKNOX_ENDPOINT }}
-          soft_fail: "false"
-
           # Required scan URL
           target_url: "https://juice-shop.herokuapp.com/"
           severity_threshold: "HIGH"
