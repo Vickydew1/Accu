@@ -19,10 +19,16 @@ jobs:
       - name: Run AccuKnox Container Scanner
         uses: Vickydew1/container-scan-action@main
         with:
+          # GitHub secrets
           accuknox_token: ${{ secrets.ACCUKNOX_TOKEN }}
           accuknox_label: ${{ secrets.ACCUKNOX_LABEL }}
           accuknox_endpoint: ${{ secrets.ACCUKNOX_ENDPOINT }}
-          image_name: "nginx"       # <-- pass container image here
-          tag: "latest"             # optional
-          severity: "CRITICAL,LOW,MEDIUM,HIGH,UNKNOWN"      # optional
-          soft_fail: true          # set false to fail workflow if vulnerabilities found
+
+          # Container image
+          image_name: "nginx"       # required
+          tag: "latest"             # optional, defaults to "latest"
+
+          # Optional flags
+          soft_fail: true           # workflow won't fail on scan issues
+          compact: true             # hide code blocks
+          quiet: true              
