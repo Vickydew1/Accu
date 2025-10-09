@@ -25,8 +25,7 @@ jobs:
           accuknox_endpoint: ${{ secrets.ACCUKNOX_ENDPOINT }}
 
           # Container image
-          image_name: "nginx"      # image name only
-          tag: "latest"            # optional, defaults to "latest"
+          image_name: "nginx"      # image name 
 
           # Optional flags
           soft_fail: true
