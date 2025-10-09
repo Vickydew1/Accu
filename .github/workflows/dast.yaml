@@ -18,7 +18,6 @@ jobs:
       - name: Run AccuKnox DAST Scan
         uses: Vickydew1/dast-scan-action@main
         with:
-          # Map GitHub secrets to action input names
           token: ${{ secrets.ACCUKNOX_TOKEN }}
           label: ${{ secrets.ACCUKNOX_LABEL }}
           endpoint: ${{ secrets.ACCUKNOX_ENDPOINT }}
