@@ -1,28 +1,26 @@
-name: AccuKnox IaC Scan Workflow
+name: accuknox iac scan
 
 on:
   push:
     branches: [ main ]
   pull_request:
-    branches: [ main ]
 
 jobs:
-  iac-scan:
+  iac_scan:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: checkout
         uses: actions/checkout@v4
 
-      - name: Run AccuKnox IaC Scan
+      - name: run accuknox iac scan
         uses: Vickydew1/iac-scan-action@main
         with:
-          directory: "."
-          soft_fail: true
-          token: ${{ secrets.ACCUKNOX_TOKEN }}
-          endpoint: ${{ secrets.ACCUKNOX_ENDPOINT }}
-          label: ${{ secrets.ACCUKNOX_LABEL }}
-          file: ""
-          compact: true
-          quiet: true
-          framework: ""
-
+          accuknox_token: ${{ secrets.accuknox_token }}
+          accuknox_label: ${{ secrets.accuknox_label }}
+          accuknox_endpoint: ${{ secrets.accuknox_endpoint }}
+          directory: "."      # optional
+          file: ""            # optional
+          compact: true       # optional
+          quiet: true         # optional
+          soft_fail: false    # optional
+          framework: ""       # optional
