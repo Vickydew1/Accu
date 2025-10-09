@@ -29,5 +29,4 @@ jobs:
 
           # Optional flags
           soft_fail: true
-          compact: true
-          quiet: true
+
