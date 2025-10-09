@@ -23,7 +23,7 @@ jobs:
           endpoint: ${{ secrets.ACCUKNOX_ENDPOINT }}
 
           # Required scan URL
-          target_url: "https://juice-shop.herokuapp.com/"
+          target_url: "https://github.com/rapid7/hackazon/"
           severity_threshold: "HIGH"
           dast_scan_type: "baseline"
           soft_fail: "true"
