@@ -28,7 +28,6 @@ jobs:
           branch: ${{ github.ref_name }}
           commit_sha: ${{ github.sha }}
           pipeline_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          base_command: docker
           soft_fail: false
           accuknox_endpoint: ${{ secrets.ACCUKNOX_ENDPOINT }}
           accuknox_token: ${{ secrets.ACCUKNOX_TOKEN }}
