@@ -1,4 +1,4 @@
-name: "AccuKnox SQ-SAST Scan"
+name: AccuKnox SQ-SAST Scan
 
 on:
   push:
@@ -11,19 +11,25 @@ on:
 jobs:
   sq-sast-scan:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Run AccuKnox SQ-SAST Scan
-        uses: Vickydew1/sast-scan-action@main
+        uses: accuknox/sq-sast-scan-action@v1.0.2
         with:
           skip_sonar_scan: false
           sonar_project_key: ${{ secrets.SONAR_PROJECT_KEY }}
           sonar_token: ${{ secrets.SONAR_TOKEN }}
           sonar_host_url: ${{ secrets.SONAR_HOST_URL }}
-          sonar_organization_id: ${{ secrets.SONAR_ORG_ID }}
+          sonar_org_id: ${{ secrets.SONAR_ORG_ID }}
+          repo_url: ${{ github.repository }}
+          branch: ${{ github.ref_name }}
+          commit_sha: ${{ github.sha }}
+          pipeline_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          base_command: docker
+          soft_fail: false
           accuknox_endpoint: ${{ secrets.ACCUKNOX_ENDPOINT }}
           accuknox_token: ${{ secrets.ACCUKNOX_TOKEN }}
           accuknox_label: ${{ secrets.ACCUKNOX_LABEL }}
-          soft_fail: false
