@@ -32,3 +32,35 @@ stages:
         accuknoxToken: $(accuknox-token)
         accuknoxLabel: $(accuknox-label)
         softFail: true
+    - task: accuknox-secret-scan@1
+      inputs:
+        accuknoxEndpoint: '$(accuknox-enpoint)'
+        accuknoxToken: '$(accuknox-token)'
+        accuknoxLabel: '$(accuknox-label)'
+        inputSoftFail: true
+    - task: accuknox-sq-sast@2
+      inputs:
+        sonarQubeUrl: '$(sonarQubeUrl)'
+        sonarQubeToken: '$(sonarQubeToken)'
+        sonarQubeProjectKey: '$(sonarQubeProjectKey)'
+        accuknoxEndpoint: '$(accuknox-enpoint)'
+        accuknoxToken: '$(accuknox-token)'
+        accuknoxLabel: '$(accuknox-label)'
+        qualityGate: false
+        skipSonarQubeScan: true
+
+    - task: AccuKnox-Container-Scan@2
+      inputs:
+        imageName: 'bkimminich/juice-shop'
+        tag: 'latest'
+        inputSoftFail: true
+        accuknoxEndpoint: $(accuknox-endpoint)
+        accuknoxToken: $(accuknox-token)
+        accuknoxLabel: $(accuknox-label)
+    - task: AccuKnox-DAST@2
+      inputs:
+        targetURL: 'http://testphp.vulnweb.com/'
+        scanType: 'baseline'
+        accuknoxEndpoint: $(accuknox-endpoint)
+        accuknoxToken: $(accuknox-token)
+        accuknoxLabel: $(accuknox-label)
