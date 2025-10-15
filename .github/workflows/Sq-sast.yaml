@@ -19,11 +19,11 @@ jobs:
       - name: Run AccuKnox SQ-SAST Scan
         uses: Vickydew1/sast-scan-action@main
         with:
-          skip_sonar_scan: false
+          skip_sonar_scan: true
           sonar_project_key: ${{ secrets.SONAR_PROJECT_KEY }}
           sonar_token: ${{ secrets.SONAR_TOKEN }}
           sonar_host_url: ${{ secrets.SONAR_HOST_URL }}
-          soft_fail: true
+          soft_fail: false
           accuknox_endpoint: ${{ secrets.ACCUKNOX_ENDPOINT }}
           accuknox_token: ${{ secrets.ACCUKNOX_TOKEN }}
           accuknox_label: ${{ secrets.ACCUKNOX_LABEL }}
