@@ -29,5 +29,5 @@ jobs:
           image_name: "nginx"      # image name 
 
           # Optional flags
-          soft_fail: true
+          soft_fail: false
 
