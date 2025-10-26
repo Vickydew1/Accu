@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5.0.0
 
       - name: Run AccuKnox Container Scanner
         uses: Vickydew1/container-scan-action@main
@@ -29,5 +29,6 @@ jobs:
           image_name: "nginx"      # image name 
 
           # Optional flags
-          soft_fail: false
+          soft_fail: true
+          
 
