@@ -20,7 +20,7 @@ jobs:
         with:
           accuknox_token: ${{ secrets.ACCUKNOX_TOKEN }}
           accuknox_label: ${{ secrets.ACCUKNOX_LABEL }}
-          accuknox_endpoint: "cspm.stage.accuknox.com"
+          accuknox_endpoint: "cspm.demo.accuknox.com"
           target_url: "http://testphp.vulnweb.com/"
           severity_threshold: "HIGH"
           dast_scan_type: "baseline"
