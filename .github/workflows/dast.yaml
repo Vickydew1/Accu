@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run AccuKnox DAST Scan
-        uses: accuknox/dast-scan-action@v1.0.0
+        uses: accuknox/dast-scan-action@v1.0.1
         with:
           accuknox_token: ${{ secrets.ACCUKNOX_TOKEN }}
           accuknox_label: ${{ secrets.ACCUKNOX_LABEL }}
