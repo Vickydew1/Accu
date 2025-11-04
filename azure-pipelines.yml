@@ -4,63 +4,53 @@
 # https://aka.ms/yaml
 
 trigger:
-  branches:
-    include:
-    - main
-stages:
-- stage: __default
-  jobs:
-  - job: Job
-    pool:
-      name: Default
-    steps:
-    - task: CmdLine@2
-      displayName: 'Run a one-line script'
-      inputs:
-        script: echo Hello, world!
-    - task: accuknox-iac@2
-      inputs:
-        accuknoxEndpoint: '$(accuknox-endpoint)'
-        accuknoxToken: '$(accuknox-token)'
-        accuknoxLabel: '$(accuknox-label)'
-        inputQuiet: true
-        inputCompact: true
-        inputSoftFail: true
-    - task: AccuKnox-SAST@2
-      inputs:
-        accuknoxEndpoint: $(accuknox-endpoint)
-        accuknoxToken: $(accuknox-token)
-        accuknoxLabel: $(accuknox-label)
-        softFail: true
-    - task: accuknox-secret-scan@1
-      inputs:
-        accuknoxEndpoint: '$(accuknox-endpoint)'
-        accuknoxToken: '$(accuknox-token)'
-        accuknoxLabel: '$(accuknox-label)'
-        inputSoftFail: true
-    - task: accuknox-sq-sast@2
-      inputs:
-        sonarQubeUrl: '$(sonarQubeUrl)'
-        sonarQubeToken: '$(sonarQubeToken)'
-        sonarQubeProjectKey: '$(sonarQubeProjectKey)'
-        accuknoxEndpoint: '$(accuknox-endpoint)'
-        accuknoxToken: '$(accuknox-token)'
-        accuknoxLabel: '$(accuknox-label)'
-        qualityGate: false
-        skipSonarQubeScan: true
+- main
 
-    - task: AccuKnox-Container-Scan@2
-      inputs:
-        imageName: 'bkimminich/juice-shop'
-        tag: 'latest'
-        inputSoftFail: true
-        accuknoxEndpoint: $(accuknox-endpoint)
-        accuknoxToken: $(accuknox-token)
-        accuknoxLabel: $(accuknox-label)
-    - task: AccuKnox-DAST@2
-      inputs:
-        targetURL: 'http://testphp.vulnweb.com/'
-        scanType: 'baseline'
-        accuknoxEndpoint: $(accuknox-endpoint)
-        accuknoxToken: $(accuknox-token)
-        accuknoxLabel: $(accuknox-label)
+pool:
+  name: New
+
+steps:
+
+- task: accuknox-checkmarx-extension@1
+  inputs:
+    checkmarxBaseUri: $(checkmarxBaseUri)
+    checkmarxBaseAuthUri: $(checkmarxBaseAuthUri)
+    checkmarxTenant: $(checkmarxTenant)
+    checkmarxApiKey: $(checkmarxApiKey)
+    checkmarxProjectName: $(checkmarxProjectName)
+    accuknoxEndpoint: $(accuknoxEndpoint)
+    accuknoxToken: $(accuknoxToken)
+    accuknoxLabel: $(accuknoxLabel)
+
+- task: accuknox-checkmarx-extension@1
+  displayName: "Run Checkmarx DAST Scan"
+  inputs:
+    checkmarxBaseUri: $(checkmarxBaseUri)
+    checkmarxBaseAuthUri: $(checkmarxBaseAuthUri)
+    checkmarxTenant: $(checkmarxTenant)
+    checkmarxApiKey: $(checkmarxApiKey)
+    checkmarxProjectName: $(checkmarxProjectName)
+    checkmarxScanTypes: "dast"
+    dastScanUrl: "http://testphp.vulnweb.com"
+    dastEnvironmentId: "051cb3db-df12-4245-90fd-9ca1a441db2e"
+    dastFailOn: "high"
+    dastVerbose: true
+    accuknoxEndpoint: $(accuknoxEndpoint)
+    accuknoxToken: $(accuknoxToken)
+    accuknoxLabel: $(accuknoxLabel)
+
+- task: accuknox-checkmarx-extension@1
+  displayName: "Run Container Security Scan with SCA"
+  inputs:
+    checkmarxBaseUri: $(checkmarxBaseUri)
+    checkmarxBaseAuthUri: $(checkmarxBaseAuthUri)
+    checkmarxTenant: $(checkmarxTenant)
+    checkmarxApiKey: $(checkmarxApiKey)
+    checkmarxProjectName: $(checkmarxProjectName)
+    checkmarxScanTypes: "containers"
+    # Container-specific configuration
+    containerImages: "citizenstig/dvwa:latest"
+    containerExcludeNonFinalStages: true
+    accuknoxEndpoint: $(accuknoxEndpoint)
+    accuknoxToken: $(accuknoxToken)
+    accuknoxLabel: $(accuknoxLabel)
