@@ -11,6 +11,11 @@ pool:
 
 steps:
 
+- script: |
+    mkdir -p $(Build.SourcesDirectory)/results
+    chmod -R 777 $(Build.SourcesDirectory)/results
+  displayName: "Prepare results directory"
+  
 - task: accuknox-checkmarx-extension@1
   inputs:
     checkmarxBaseUri: $(checkmarxBaseUri)
