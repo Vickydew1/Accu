@@ -1,0 +1,35 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  name: Vicky
+
+steps:
+- task: Docker@2
+  displayName: 'Build Docker Image'
+  inputs:
+    command: build
+    Dockerfile: '**/Dockerfile'
+    repository: '$(imageRepository)'
+    tags: |
+      $(imageTag)
+- task: accuknox-container-scan@2
+  inputs:
+    tag: $(imageTag)
+    imageName: $(imageRepository)
+    accuknoxEndpoint: '$(accuknoxEndpoint)'
+    accuknoxToken: '$(accuknoxToken)'
+    accuknoxLabel:  '$(accuknoxLabel)'
+
+- task: accuknox-iac@2
+  inputs:
+    accuknoxEndpoint: '$(accuknoxEndpoint)'
+    accuknoxToken: '$(accuknoxToken)'
+    accuknoxLabel: '$(accuknoxLabel)'
+    inputQuiet: true
+    inputCompact: true
