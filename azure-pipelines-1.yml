@@ -10,22 +10,12 @@ pool:
   name: Vicky
 
 steps:
-- task: Docker@2
-  displayName: 'Build Docker Image'
+- task: accuknox-sast@3
   inputs:
-    command: build
-    Dockerfile: '**/Dockerfile'
-    repository: '$(imageRepository)'
-    tags: |
-      $(imageTag)
-- task: accuknox-container-scan@2
-  inputs:
-    tag: $(imageTag)
-    imageName: $(imageRepository)
     accuknoxEndpoint: '$(accuknoxEndpoint)'
     accuknoxToken: '$(accuknoxToken)'
-    accuknoxLabel:  '$(accuknoxLabel)'
-
+    accuknoxLabel: '$(accuknoxLabel)'
+    SoftFail: true
 - task: accuknox-iac@2
   inputs:
     accuknoxEndpoint: '$(accuknoxEndpoint)'
@@ -33,3 +23,12 @@ steps:
     accuknoxLabel: '$(accuknoxLabel)'
     inputQuiet: true
     inputCompact: true
+
+- task: AccuKnox-DAST@2
+  inputs:
+    targetURL: 'http://testphp.vulnweb.com/'
+    scanType: 'baseline'
+    qualityGate: 'Critical'
+    accuknoxEndpoint: $(accuknoxEndpoint)
+    accuknoxToken: $(accuknoxToken)
+    accuknoxLabel: $(accuknoxLabel)
