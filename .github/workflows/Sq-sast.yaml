@@ -26,7 +26,7 @@ jobs:
           soft_fail: false
           accuknox_endpoint: ${{ secrets.ACCUKNOX_ENDPOINT }}
           accuknox_token: ${{ secrets.ACCUKNOX_TOKEN }}
-          accuknox_label: ${{ secrets.ACCUKNOX_LABEL }}
+          label: ${{ secrets.ACCUKNOX_LABEL }}
           
 
 
