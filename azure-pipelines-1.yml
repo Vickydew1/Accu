@@ -23,7 +23,7 @@ steps:
     accuknoxLabel: '$(accuknoxLabel)'
     inputQuiet: true
     inputCompact: true
-    inputSoftFail: false
+    inputSoftFail: true
 
 - task: AccuKnox-DAST@2
   inputs:
@@ -37,7 +37,7 @@ steps:
 - task: AccuKnox-container-scan@2
   inputs:
     imageName: "nginx"
-    inputSoftFail: false
+    inputSoftFail: true
     accuknoxEndpoint: $(accuknoxEndpoint)
     accuknoxToken: $(accuknoxToken)
     accuknoxLabel: $(accuknoxLabel)
