@@ -15,7 +15,7 @@ steps:
     accuknoxEndpoint: '$(accuknoxEndpoint)'
     accuknoxToken: '$(accuknoxToken)'
     accuknoxLabel: '$(accuknoxLabel)'
-    SoftFail: false
+    SoftFail: true
 - task: accuknox-iac@2
   inputs:
     accuknoxEndpoint: '$(accuknoxEndpoint)'
@@ -30,6 +30,14 @@ steps:
     targetURL: 'http://testphp.vulnweb.com/'
     scanType: 'baseline'
     qualityGate: 'Critical'
+    accuknoxEndpoint: $(accuknoxEndpoint)
+    accuknoxToken: $(accuknoxToken)
+    accuknoxLabel: $(accuknoxLabel)
+
+- task: AccuKnox-container-scan@2
+  inputs:
+    imageName: "nginx"
+    inputSoftFail: false
     accuknoxEndpoint: $(accuknoxEndpoint)
     accuknoxToken: $(accuknoxToken)
     accuknoxLabel: $(accuknoxLabel)
