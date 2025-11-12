@@ -15,7 +15,7 @@ steps:
     accuknoxEndpoint: '$(accuknoxEndpoint)'
     accuknoxToken: '$(accuknoxToken)'
     accuknoxLabel: '$(accuknoxLabel)'
-    SoftFail: true
+    SoftFail: false
 - task: accuknox-iac@2
   inputs:
     accuknoxEndpoint: '$(accuknoxEndpoint)'
@@ -23,6 +23,7 @@ steps:
     accuknoxLabel: '$(accuknoxLabel)'
     inputQuiet: true
     inputCompact: true
+    inputSoftFail: false
 
 - task: AccuKnox-DAST@2
   inputs:
