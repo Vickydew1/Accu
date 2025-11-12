@@ -10,34 +10,35 @@ pool:
   name: Vicky
 
 steps:
-- task: accuknox-sast@3
-  inputs:
-    accuknoxEndpoint: '$(accuknoxEndpoint)'
-    accuknoxToken: '$(accuknoxToken)'
-    accuknoxLabel: '$(accuknoxLabel)'
-    SoftFail: true
-- task: accuknox-iac@2
-  inputs:
-    accuknoxEndpoint: '$(accuknoxEndpoint)'
-    accuknoxToken: '$(accuknoxToken)'
-    accuknoxLabel: '$(accuknoxLabel)'
-    inputQuiet: true
-    inputCompact: true
-    inputSoftFail: true
+# - task: accuknox-sast@3
+#   inputs:
+#     accuknoxEndpoint: '$(accuknoxEndpoint)'
+#     accuknoxToken: '$(accuknoxToken)'
+#     accuknoxLabel: '$(accuknoxLabel)'
+#     SoftFail: true
+# - task: accuknox-iac@2
+#   inputs:
+#     accuknoxEndpoint: '$(accuknoxEndpoint)'
+#     accuknoxToken: '$(accuknoxToken)'
+#     accuknoxLabel: '$(accuknoxLabel)'
+#     inputQuiet: true
+#     inputCompact: true
+#     inputSoftFail: true
 
-- task: AccuKnox-DAST@2
-  inputs:
-    targetURL: 'http://testphp.vulnweb.com/'
-    scanType: 'baseline'
-    qualityGate: 'Critical'
-    accuknoxEndpoint: $(accuknoxEndpoint)
-    accuknoxToken: $(accuknoxToken)
-    accuknoxLabel: $(accuknoxLabel)
+# - task: AccuKnox-DAST@2
+#   inputs:
+#     targetURL: 'http://testphp.vulnweb.com/'
+#     scanType: 'baseline'
+#     qualityGate: 'Critical'
+#     accuknoxEndpoint: $(accuknoxEndpoint)
+#     accuknoxToken: $(accuknoxToken)
+#     accuknoxLabel: $(accuknoxLabel)
 
 - task: AccuKnox-container-scan@2
   inputs:
     imageName: "nginx"
     inputSoftFail: true
+    tag: latest
     accuknoxEndpoint: $(accuknoxEndpoint)
     accuknoxToken: $(accuknoxToken)
     accuknoxLabel: $(accuknoxLabel)
